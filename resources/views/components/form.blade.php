@@ -57,14 +57,34 @@
 
                 <div class="mb-3">
                     <label for="number_exercises">Número:</label>
-                    <input type="number" class="form-control" id="number_exercises" name="number_exercises"
-                        min="5" max="50" value="10">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="number_exercises"
+                        name="number_exercises"
+                        min="5" max="50" value="10"
+                    >
                 </div>
 
                 <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Gerar exercícios</button>
+                    <button type="submit" class="btn btn-primary">
+                        Gerar exercícios
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+{{-- validation errors --}}
+@if($errors->any())
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-danger text-center mt-3">
+                Por favor selecione pelo menos uma das opções.
+                As parcelas devem ser preenchidas corretamente.
+            </div>
+        </div>
+    </div>
+@endif
+
