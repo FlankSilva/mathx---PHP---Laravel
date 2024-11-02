@@ -4,7 +4,6 @@
         <div class="row gap-5">
             <!-- 4 checkboxes -->
             <div class="col">
-
                 <p class="text-info">Operações:</p>
 
                 <div class="form-check mb-3">
