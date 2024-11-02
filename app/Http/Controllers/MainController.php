@@ -9,7 +9,7 @@ class MainController extends Controller {
         return view('home');
     }
 
-    public function generateExercises(Request $request) {
+    public function generateExercises(Request $request): View {
         // form valitation
         $request->validate([
             'check_sum' => 'required_without_all:check_subtraction,check_multiplication,check_division',
@@ -48,15 +48,15 @@ class MainController extends Controller {
 
             switch ($operation) {
                 case 'sum':
-                    $exercise = $number1 . ' + ' . $number2;
+                    $exercise = $number1 . ' + ' . $number2 . ' = ';
                     $solution = $number1 + $number2;
                     break;
                 case 'subtraction':
-                    $exercise = $number1 . ' - ' . $number2;
+                    $exercise = $number1 . ' - ' . $number2 . ' = ';
                     $solution = $number1 - $number2;
                     break;
                 case 'multiplication':
-                    $exercise = $number1 . ' x ' . $number2;
+                    $exercise = $number1 . ' x ' . $number2 . ' = ';
                     $solution = $number1 * $number2;
                     break;
                 case 'division':
@@ -65,7 +65,7 @@ class MainController extends Controller {
                         $number2 = 1;
                     }
 
-                    $exercise = $number1 . ' : ' . $number2;
+                    $exercise = $number1 . ' : ' . $number2 . ' = ';
                     $solution = $number1 / $number2;
                     break;
             }
@@ -77,13 +77,13 @@ class MainController extends Controller {
 
             $exercises[] = [
                 'operation' => $operation,
-                'exercise_number' => $index,
+                'exercise_number' => $index + 1,
                 'exercise' => $exercise,
                 'solution' => "$exercise = $solution"
             ];
         }
 
-        dd($exercises);
+        return view('operations', ['exercises' => $exercises]);
     }
 
     public function printExercises() {
